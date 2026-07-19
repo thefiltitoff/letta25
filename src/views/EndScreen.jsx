@@ -89,18 +89,17 @@ export function EndScreen({ t, openModal, scrollTop }) {
           {t.endClosing}
         </p>
         <div className="mt-3.5">
+          {/* The shimmer is the button's own background layer, not an overlay
+              element: a background can never paint over the label or clip it,
+              no matter how the browser composites the animation. */}
           <button
             type="button"
             ref={chipRef}
             onClick={openModal}
-            className="relative cursor-pointer overflow-hidden rounded-full border-2 border-border-primary bg-bg-surface px-6 py-2 font-script text-[clamp(23px,5.6vw,28px)] font-bold leading-[1.1] text-text-primary shadow-[2px_2px_0_0_var(--border-primary)] transition-transform duration-100 hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-[1px_1px_0_0_var(--border-primary)]"
+            style={{ animation: chipVisible ? undefined : "none" }}
+            className="relative cursor-pointer rounded-full border-2 border-border-primary bg-bg-surface bg-[linear-gradient(105deg,transparent_20%,var(--shimmer)_50%,transparent_80%)] bg-no-repeat [background-size:45%_100%] [background-position:-100%_0] animate-[shimmerSlide_3.2s_ease-in-out_infinite] px-6 py-2 font-script text-[clamp(23px,5.6vw,28px)] font-bold leading-[1.1] text-text-primary shadow-[2px_2px_0_0_var(--border-primary)] transition-transform duration-100 hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-[1px_1px_0_0_var(--border-primary)]"
           >
-            <span className="relative z-10">{t.chip}</span>
-            <span
-              aria-hidden="true"
-              style={{ animationPlayState: chipVisible ? undefined : "paused" }}
-              className="pointer-events-none absolute inset-y-0 left-0 w-[40%] animate-[shimmerMove_3.2s_ease-in-out_infinite] bg-[linear-gradient(105deg,transparent_20%,var(--shimmer)_50%,transparent_80%)]"
-            />
+            {t.chip}
           </button>
         </div>
       </div>

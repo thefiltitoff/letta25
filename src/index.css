@@ -106,13 +106,16 @@
     transform: translateY(-4px);
   }
 }
-@keyframes shimmerMove {
+/* Slides the chip's gradient background layer across it; with the 105deg
+   gradient the visible band stays diagonal (§7.5). Position percentages
+   overshoot so the band fully leaves the chip on both sides. */
+@keyframes shimmerSlide {
   0% {
-    transform: translateX(-130%) skewX(-20deg);
+    background-position: -100% 0;
   }
   45%,
   100% {
-    transform: translateX(340%) skewX(-20deg);
+    background-position: 200% 0;
   }
 }
 @keyframes floaty {

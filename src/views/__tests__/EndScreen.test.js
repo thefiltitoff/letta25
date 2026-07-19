@@ -46,14 +46,13 @@ describe("EndScreen", () => {
   it("pauses the chip shimmer while the chip is off-screen (spec §7.5)", () => {
     renderEnd();
     const chip = screen.getByRole("button", { name: new RegExp(t.chip) });
-    const shimmer = chip.querySelector('[aria-hidden="true"]');
-    expect(shimmer.style.animationPlayState).not.toBe("paused");
+    expect(chip.style.animation).not.toBe("none");
 
     act(() => MockIntersectionObserver.last.cb([{ isIntersecting: false }]));
-    expect(shimmer.style.animationPlayState).toBe("paused");
+    expect(chip.style.animation).toBe("none");
 
     act(() => MockIntersectionObserver.last.cb([{ isIntersecting: true }]));
-    expect(shimmer.style.animationPlayState).not.toBe("paused");
+    expect(chip.style.animation).not.toBe("none");
   });
 
   it("renders the footer links as placeholder anchors (spec §13.1 default)", () => {
