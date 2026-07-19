@@ -1,13 +1,158 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --bg-base: #fcfbf4;
+  --bg-surface: #fffdd0;
+  --brand-pink: #f9c1bb;
+  --brand-pink-hover: #e8b9b7;
+  --brand-pink-active: #dba8a4;
+  --brand-yellow: #fbf04d;
+  --brand-yellow-hover: #f2e345;
+  --brand-yellow-active: #e8d93b;
+  --text-primary: #3c2e2a;
+  --text-secondary: #7a6a58;
+  --border-primary: #3c2e2a;
+  --focus-ring: #3c2e2a;
+  --deco-sage: #a9b79b;
+  --shimmer: rgba(255, 255, 255, 0.35);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+[data-theme="dark"] {
+  --bg-base: #1e1b18;
+  --bg-surface: #362a21;
+  --brand-pink: #eeb3b0;
+  --brand-pink-hover: #e1a29e;
+  --brand-pink-active: #d4928d;
+  --brand-yellow: #ffd84d;
+  --brand-yellow-hover: #f2c93b;
+  --brand-yellow-active: #e5bc2a;
+  --text-primary: #fcfbf4;
+  --text-secondary: #b8a99a;
+  --border-primary: #fcfbf4;
+  --focus-ring: #ffd84d;
+  --deco-sage: #8fa07e;
+  --shimmer: rgba(252, 251, 244, 0.25);
+}
+
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-pink-hover: var(--brand-pink-hover);
+  --color-brand-pink-active: var(--brand-pink-active);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-yellow-hover: var(--brand-yellow-hover);
+  --color-brand-yellow-active: var(--brand-yellow-active);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-primary: var(--border-primary);
+  --color-focus-ring: var(--focus-ring);
+  --color-deco-sage: var(--deco-sage);
+  --color-shimmer: var(--shimmer);
+
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
+
+  --shadow-neo-flat: 4px 4px 0 0 var(--border-primary);
+}
+
+@keyframes fadeRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes softIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes softOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes dotBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes shimmerMove {
+  0% {
+    transform: translateX(-130%) skewX(-20deg);
+  }
+  45%,
+  100% {
+    transform: translateX(340%) skewX(-20deg);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-7px) rotate(var(--r, 0deg));
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 6px);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg-base);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--brand-yellow);
+  color: #3c2e2a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
