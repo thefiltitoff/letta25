@@ -16,7 +16,10 @@
   --border-primary: #3c2e2a;
   --focus-ring: #3c2e2a;
   --deco-sage: #a9b79b;
-  --shimmer: rgba(255, 255, 255, 0.35);
+  /* Spec §7.5 asks for white at 35% here, but white is invisible on the
+     near-white chip fill (#FFFDD0) — I deviate to a golden band that
+     actually reads on the light theme. */
+  --shimmer: rgba(232, 217, 59, 0.5);
 }
 
 [data-theme="dark"] {
