@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import tattoo from "../assets/tattoo-sun-moon.png";
+import { trackEvent } from "../services/analytics";
 
 export function EndScreen({ t, openModal, scrollTop }) {
   const chipRef = useRef(null);
@@ -116,18 +117,21 @@ export function EndScreen({ t, openModal, scrollTop }) {
           </button>
         </div>
         <div className="h-px bg-text-secondary opacity-50" />
-        {/* href="#" — placeholders per spec §13.1, I'll drop in the real URLs later */}
+        {/* Figma href is still a "#" placeholder per spec §13.1 — URL pending */}
         <div className="mt-5 flex justify-center gap-3">
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
             href="#"
+            onClick={() => trackEvent("link_click", { destination: "figma" })}
             className="inline-block rounded-full border-2 border-border-primary bg-bg-surface px-[18px] py-[7px] font-sans text-sm font-semibold text-text-primary no-underline shadow-[2px_2px_0_0_var(--border-primary)] transition-transform duration-100 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_var(--border-primary)]"
           >
             Figma ↗
           </a>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
-            href="#"
+            href="https://github.com/thefiltitoff/letta25"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackEvent("link_click", { destination: "github" })}
             className="inline-block rounded-full border-2 border-border-primary bg-bg-surface px-[18px] py-[7px] font-sans text-sm font-semibold text-text-primary no-underline shadow-[2px_2px_0_0_var(--border-primary)] transition-transform duration-100 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_var(--border-primary)]"
           >
             GitHub ↗

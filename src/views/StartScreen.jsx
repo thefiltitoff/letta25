@@ -70,7 +70,7 @@ export function StartScreen({ t, begin }) {
 
       <button
         type="button"
-        onClick={begin}
+        onClick={() => begin("scroll_down")}
         aria-label={t.aria.next}
         className="absolute bottom-10 left-1/2 z-10 h-11 w-11 -translate-x-1/2 animate-[bob_2.2s_ease-in-out_infinite] cursor-pointer rounded-full border-none bg-transparent text-lg font-bold text-text-primary shadow-[inset_0_0_0_2.5px_var(--border-primary)] md:h-12 md:w-12"
       >

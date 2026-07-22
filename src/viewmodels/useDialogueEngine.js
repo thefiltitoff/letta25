@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useReducer, useRef } from "react";
 import { buttonLabelOf, dialogueNodes, indicatorDuration, linesOf } from "../models/dialogueNodes";
 import { prefersReducedMotion } from "../services/reducedMotion";
 import { lineTypingDuration } from "../models/typewriter";
+import { trackEvent } from "../services/analytics";
 
 function dialogueReducer(state, action) {
   switch (action.type) {
@@ -50,6 +51,7 @@ export function useDialogueEngine(lang, onEnd) {
 
   const handleTap = useCallback((item) => {
     if (item.done) return;
+    trackEvent("button_click", { button_id: "dialogue_reply", node_id: item.nodeId, action: item.action });
     dispatch({ type: "update", key: item.key, patch: { done: true } });
     if (resolveTapRef.current) {
       pendingActionRef.current = item.action;

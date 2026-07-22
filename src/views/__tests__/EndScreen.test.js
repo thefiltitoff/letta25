@@ -55,10 +55,14 @@ describe("EndScreen", () => {
     expect(chip.style.animation).not.toBe("none");
   });
 
-  it("renders the footer links as placeholder anchors (spec §13.1 default)", () => {
+  it("renders the footer links to Figma (placeholder) and GitHub (real repo)", () => {
     renderEnd();
     const links = screen.getAllByRole("link");
     expect(links).toHaveLength(2);
-    for (const link of links) expect(link).toHaveAttribute("href", "#");
+    expect(screen.getByRole("link", { name: /figma/i })).toHaveAttribute("href", "#");
+    expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
+      "href",
+      "https://github.com/thefiltitoff/letta25"
+    );
   });
 });
