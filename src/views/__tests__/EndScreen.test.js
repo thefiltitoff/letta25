@@ -43,7 +43,7 @@ describe("EndScreen", () => {
     expect(scrollTop).toHaveBeenCalledTimes(1);
   });
 
-  it("pauses the chip shimmer while the chip is off-screen (spec §7.5)", () => {
+  it("pauses the chip shimmer while the chip is off-screen", () => {
     renderEnd();
     const chip = screen.getByRole("button", { name: new RegExp(t.chip) });
     expect(chip.style.animation).not.toBe("none");
@@ -55,11 +55,14 @@ describe("EndScreen", () => {
     expect(chip.style.animation).not.toBe("none");
   });
 
-  it("renders the footer links to Figma (placeholder) and GitHub (real repo)", () => {
+  it("renders the footer links to Figma and GitHub", () => {
     renderEnd();
     const links = screen.getAllByRole("link");
     expect(links).toHaveLength(2);
-    expect(screen.getByRole("link", { name: /figma/i })).toHaveAttribute("href", "#");
+    expect(screen.getByRole("link", { name: /figma/i })).toHaveAttribute(
+      "href",
+      "https://www.figma.com/design/8w9zFTa2Sfd2ULZg7ZMf2m/Letta-s-Birthday-%E2%80%94-Design-System-Board?node-id=0-1"
+    );
     expect(screen.getByRole("link", { name: /github/i })).toHaveAttribute(
       "href",
       "https://github.com/thefiltitoff/letta25"

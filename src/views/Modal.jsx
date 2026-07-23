@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 export function Modal({ open, quote, sign, ariaLabel, closeLabel, onClose }) {
   const closeRef = useRef(null);
 
-  // Focus trap (§11): on open, focus moves to the close button — the only
+  // Focus trap: on open, focus moves to the close button — the only
   // focusable element of the card, and Tab stays on it; on close, focus
   // returns to the opener element (the chip).
   useEffect(() => {
@@ -17,8 +17,8 @@ export function Modal({ open, quote, sign, ariaLabel, closeLabel, onClose }) {
 
   useEffect(() => {
     if (!open) return;
-    const onKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -26,9 +26,9 @@ export function Modal({ open, quote, sign, ariaLabel, closeLabel, onClose }) {
 
   if (!open) return null;
 
-  const trapTab = (e) => {
-    if (e.key === "Tab") {
-      e.preventDefault();
+  const trapTab = (event) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
       closeRef.current?.focus();
     }
   };
@@ -43,7 +43,7 @@ export function Modal({ open, quote, sign, ariaLabel, closeLabel, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-label={ariaLabel}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
         className="relative w-80 max-w-full animate-[fadeRise_0.24s_ease-out_both] rounded-[20px] border-[3px] border-border-primary bg-bg-surface px-[30px] py-8 shadow-[6px_6px_0_0_var(--border-primary)]"
       >
         <button
@@ -56,8 +56,8 @@ export function Modal({ open, quote, sign, ariaLabel, closeLabel, onClose }) {
           ×
         </button>
         <div className="flex flex-col gap-4">
-          {quote.map((line, i) => (
-            <p key={i} className="text-pretty m-0 font-sans text-base leading-[1.55] text-text-primary">
+          {quote.map((line, index) => (
+            <p key={index} className="text-pretty m-0 font-sans text-base leading-[1.55] text-text-primary">
               {line}
             </p>
           ))}

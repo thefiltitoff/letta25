@@ -74,7 +74,7 @@ export function useDialogueEngine(lang, onEnd) {
           dispatch({ type: "add", item: { key: indicatorKey, kind: "indicator" } });
           await wait(indicatorDuration(node, langRef.current));
           if (!active()) return;
-          // 150ms fade-out (spec §7.1.3): mark as leaving, then drop from the list
+          // 150ms fade-out: mark as leaving, then drop from the list
           dispatch({ type: "update", key: indicatorKey, patch: { leaving: true } });
           await wait(150);
           if (!active()) return;
@@ -89,8 +89,7 @@ export function useDialogueEngine(lang, onEnd) {
           await wait(lineTypingDuration(nodeLines[0]));
           if (!active()) return;
           for (let i = 1; i < total; i++) {
-            // 1000ms instead of the spec's 500ms (§7.2) — my deliberate choice:
-            // stitched lines read calmer at a slower pace.
+            // 1000ms is a deliberate choice: stitched lines read calmer at a slower pace.
             // The pause starts counting after the previous line finishes typing.
             await wait(1000);
             if (!active()) return;
@@ -160,14 +159,14 @@ export function useDialogueEngine(lang, onEnd) {
     () =>
       items.map((item) => {
         if (item.kind === "bubble") {
-          const node = dialogueNodes.find((n) => n.id === item.nodeId);
+          const node = dialogueNodes.find((candidate) => candidate.id === item.nodeId);
           return { key: item.key, kind: "bubble", lines: linesOf(node, lang).slice(0, item.count) };
         }
         if (item.kind === "indicator") {
           return { key: item.key, kind: "indicator", leaving: !!item.leaving };
         }
         if (item.kind === "button") {
-          const node = dialogueNodes.find((n) => n.id === item.nodeId);
+          const node = dialogueNodes.find((candidate) => candidate.id === item.nodeId);
           const label = buttonLabelOf(node, lang);
           return {
             key: item.key,

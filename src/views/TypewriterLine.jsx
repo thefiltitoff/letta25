@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { prefersReducedMotion } from "../services/reducedMotion";
 import { lineTypingDuration, segmentGraphemes } from "../models/typewriter";
 
-// Typewriter line of a bubble (§7.1.3): types grapheme by grapheme, anchored to
+// Typewriter line of a bubble: types grapheme by grapheme, anchored to
 // real time (resilient to timer throttling). The full text is always in the DOM
-// for screen readers; the per-character typing sits under aria-hidden (§11). The
+// for screen readers; the per-character typing sits under aria-hidden. The
 // invisible full text reserves the final line size — the bubble doesn't jump while
-// typing. Language switch mid-flow (§10): a finished line swaps instantly, a line
+// typing. Language switch mid-flow: a finished line swaps instantly, a line
 // still being typed restarts from scratch.
 export function TypewriterLine({ text, className }) {
   const [typed, setTyped] = useState(() => (prefersReducedMotion() ? text : ""));

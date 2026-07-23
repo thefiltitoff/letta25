@@ -15,8 +15,8 @@ export function useLanguage() {
 
   const cycleLang = useCallback(() => {
     setLang((current) => {
-      const i = LANGS.indexOf(current);
-      const next = LANGS[(i + 1) % LANGS.length];
+      const currentIndex = LANGS.indexOf(current);
+      const next = LANGS[(currentIndex + 1) % LANGS.length];
       trackEvent("button_click", { button_id: "language_switch", from_lang: current, next_lang: next });
       return next;
     });

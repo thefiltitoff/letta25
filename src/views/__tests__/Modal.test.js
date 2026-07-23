@@ -32,19 +32,19 @@ describe("Modal", () => {
     expect(screen.getByText("signature")).toBeInTheDocument();
   });
 
-  it("moves focus to the close button on open (spec §11)", () => {
+  it("moves focus to the close button on open", () => {
     renderModal();
     expect(screen.getByRole("button", { name: "close" })).toHaveFocus();
   });
 
-  it("traps Tab on the close button (spec §11)", () => {
+  it("traps Tab on the close button", () => {
     renderModal();
     const close = screen.getByRole("button", { name: "close" });
     fireEvent.keyDown(screen.getByRole("dialog"), { key: "Tab" });
     expect(close).toHaveFocus();
   });
 
-  it("closes on Escape (spec §11)", () => {
+  it("closes on Escape", () => {
     const onClose = jest.fn();
     renderModal({ onClose });
     fireEvent.keyDown(window, { key: "Escape" });
@@ -58,7 +58,7 @@ describe("Modal", () => {
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  it("closes on overlay tap but not on card tap (spec §13.4 default)", () => {
+  it("closes on overlay tap but not on card tap", () => {
     const onClose = jest.fn();
     const { container } = renderModal({ onClose });
     fireEvent.click(screen.getByRole("dialog"));
@@ -67,7 +67,7 @@ describe("Modal", () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("returns focus to the opener on close (spec §11)", () => {
+  it("returns focus to the opener on close", () => {
     const { rerender } = render(
       <div>
         <button type="button">opener</button>

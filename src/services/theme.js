@@ -2,9 +2,9 @@ const STORAGE_KEY = "theme";
 
 export function readStoredTheme() {
   try {
-    const t = localStorage.getItem(STORAGE_KEY);
-    return t === "light" || t === "dark" ? t : null;
-  } catch (e) {
+    const storedTheme = localStorage.getItem(STORAGE_KEY);
+    return storedTheme === "light" || storedTheme === "dark" ? storedTheme : null;
+  } catch (error) {
     return null;
   }
 }
@@ -12,7 +12,7 @@ export function readStoredTheme() {
 export function persistTheme(theme) {
   try {
     localStorage.setItem(STORAGE_KEY, theme);
-  } catch (e) {
+  } catch (error) {
     // localStorage unavailable (private mode etc.) — the theme just won't persist
   }
 }

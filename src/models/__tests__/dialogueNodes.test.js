@@ -6,12 +6,12 @@ import {
   linesOf,
 } from "../dialogueNodes";
 
-// Spec source of truth: 18 bubbles / 14 indicators / 4 buttons / 0 branching.
+// Source of truth: 18 bubbles / 14 indicators / 4 buttons / 0 branching.
 describe("dialogue structure invariants", () => {
   it("has exactly 18 nodes with unique sequential ids", () => {
     expect(dialogueNodes).toHaveLength(18);
-    expect(dialogueNodes.map((n) => n.id)).toEqual(
-      Array.from({ length: 18 }, (_, i) => i + 1)
+    expect(dialogueNodes.map((node) => node.id)).toEqual(
+      Array.from({ length: 18 }, (_, index) => index + 1)
     );
   });
 
@@ -86,7 +86,7 @@ describe("buttonLabelOf", () => {
   });
 });
 
-// Spec §7.1.2: 30ms per character of the upcoming text, clamped to 900–1500ms.
+// 30ms per character of the upcoming text, clamped to 900–1500ms.
 describe("indicatorDuration", () => {
   const nodeWith = (text) => ({ lines: { ru: [text] } });
 
@@ -112,9 +112,9 @@ describe("indicatorDuration", () => {
   it("stays within 900–1500ms for every real node and language", () => {
     for (const node of dialogueNodes) {
       for (const lang of LANGS) {
-        const d = indicatorDuration(node, lang);
-        expect(d).toBeGreaterThanOrEqual(900);
-        expect(d).toBeLessThanOrEqual(1500);
+        const duration = indicatorDuration(node, lang);
+        expect(duration).toBeGreaterThanOrEqual(900);
+        expect(duration).toBeLessThanOrEqual(1500);
       }
     }
   });

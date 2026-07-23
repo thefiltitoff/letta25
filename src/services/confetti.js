@@ -5,7 +5,7 @@ const FALLBACK_COLORS = ["#F9C1BB", "#FBF04D", "#A9B79B", "#EEB3B0", "#FFD84D"];
 // Below the modal overlay (z-60), above the content and header (z-10/z-40)
 const CONFETTI_Z_INDEX = 50;
 
-// Colors come from the active theme tokens (design system §2.4), with a static palette fallback
+// Colors come from the active theme tokens, with a static palette fallback
 function themedColors() {
   const styles = getComputedStyle(document.documentElement);
   const colors = ["--brand-pink", "--brand-yellow", "--deco-sage"]

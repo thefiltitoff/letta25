@@ -26,6 +26,9 @@ export function initAnalytics() {
   return analyticsPromise;
 }
 
+// Coarse device info from the UA string — browsers don't expose an exact
+// device model (Client Hints only cover Android Chrome, nothing on iOS/Safari),
+// so this sticks to what's reliably available everywhere.
 function getDeviceInfo() {
   if (typeof navigator === "undefined") return {};
   const ua = navigator.userAgent || "";
@@ -69,6 +72,9 @@ function getDeviceInfo() {
 export async function trackEvent(name, params) {
   const analytics = await initAnalytics();
   if (!analytics) return;
+  // debug_mode is always on (not just in dev) so events show up in DebugView
+  // on the deployed site too — this is a low-traffic personal page, not a
+  // product with a real prod/dev analytics split to protect.
   const eventParams = { ...getDeviceInfo(), ...params, debug_mode: true };
   logEvent(analytics, name, eventParams);
 }

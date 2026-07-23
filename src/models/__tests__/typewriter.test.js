@@ -1,6 +1,6 @@
 import { lineTypingDuration, segmentGraphemes } from "../typewriter";
 
-// Spec §6-bis: grapheme-correct segmentation for Cyrillic, Czech diacritics and emoji.
+// Grapheme-correct segmentation for Cyrillic, Czech diacritics and emoji.
 describe("segmentGraphemes", () => {
   it("splits plain Cyrillic into single characters", () => {
     expect(segmentGraphemes("привет")).toEqual(["п", "р", "и", "в", "е", "т"]);
@@ -23,7 +23,7 @@ describe("segmentGraphemes", () => {
   });
 });
 
-// Spec §6-bis: 30–50ms per character (I use 38), capped at 1.5s per paragraph.
+// 30–50ms per character (I use 38), capped at 1.5s per line.
 describe("lineTypingDuration", () => {
   it("scales at 38ms per grapheme", () => {
     expect(lineTypingDuration("abc")).toBe(3 * 38);

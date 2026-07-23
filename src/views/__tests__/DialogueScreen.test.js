@@ -32,7 +32,7 @@ describe("DialogueScreen", () => {
     expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ behavior: "smooth" }));
   });
 
-  it("scrolls instantly under prefers-reduced-motion (spec §7.7)", () => {
+  it("scrolls instantly under prefers-reduced-motion", () => {
     mockMatchMedia({ reduce: true });
     const scrollTo = jest.spyOn(Element.prototype, "scrollTo");
     render(<DialogueScreen items={[bubble]} />);

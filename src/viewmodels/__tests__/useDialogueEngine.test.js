@@ -44,7 +44,7 @@ function renderEngine(onEnd = jest.fn(), lang = "ru") {
 }
 
 describe("useDialogueEngine — bubble cycle timings", () => {
-  it("plays the opening sequence with spec timings", async () => {
+  it("plays the opening sequence with the expected timings", async () => {
     const { result } = renderEngine();
     act(() => result.current.start());
 
@@ -144,7 +144,7 @@ describe("useDialogueEngine — restart", () => {
   });
 });
 
-describe("useDialogueEngine — prefers-reduced-motion (spec §7.7)", () => {
+describe("useDialogueEngine — prefers-reduced-motion", () => {
   it("skips indicators and pauses, showing full bubbles instantly", async () => {
     mockMatchMedia({ reduce: true });
     const { result, onEnd } = renderEngine();
@@ -170,7 +170,7 @@ describe("useDialogueEngine — prefers-reduced-motion (spec §7.7)", () => {
   });
 });
 
-describe("useDialogueEngine — language switching mid-flow (spec §10)", () => {
+describe("useDialogueEngine — language switching mid-flow", () => {
   it("retranslates already shown items without resetting progress", async () => {
     const { result, rerender } = renderEngine();
     act(() => result.current.start());

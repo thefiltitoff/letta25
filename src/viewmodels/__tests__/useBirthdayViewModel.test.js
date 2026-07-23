@@ -98,7 +98,7 @@ describe("useBirthdayViewModel — confetti on the end screen", () => {
     expect(fireConfettiCelebration).not.toHaveBeenCalled();
   });
 
-  it("respects prefers-reduced-motion (spec §7.7)", () => {
+  it("respects prefers-reduced-motion", () => {
     mockMatchMedia({ reduce: true });
     const { result } = renderHook(() => useBirthdayViewModel());
     goEnd(result);

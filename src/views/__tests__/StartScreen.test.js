@@ -19,7 +19,7 @@ describe("StartScreen", () => {
     expect(begin).toHaveBeenCalledTimes(1);
   });
 
-  it("keeps decorative layers away from assistive tech (spec §11)", () => {
+  it("keeps decorative layers away from assistive tech", () => {
     const { container } = render(<StartScreen t={t} begin={jest.fn()} />);
     const img = container.querySelector("img");
     expect(img).toHaveAttribute("aria-hidden", "true");

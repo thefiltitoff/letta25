@@ -58,7 +58,7 @@ describe("systemPrefersDark", () => {
   });
 });
 
-// Spec §9: stored choice wins, otherwise prefers-color-scheme decides.
+// Stored choice wins, otherwise prefers-color-scheme decides.
 describe("resolveInitialTheme", () => {
   it("prefers the stored theme over the system preference", () => {
     localStorage.setItem("theme", "light");
@@ -77,7 +77,7 @@ describe("resolveInitialTheme", () => {
   });
 });
 
-// Spec §9: theme switches via data-theme on <html>.
+// Theme switches via data-theme on <html>.
 describe("applyThemeToDocument", () => {
   it("sets data-theme on the root element", () => {
     applyThemeToDocument("dark");

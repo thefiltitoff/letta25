@@ -6,7 +6,7 @@ export function EndScreen({ t, openModal, scrollTop }) {
   const chipRef = useRef(null);
   const [chipVisible, setChipVisible] = useState(true);
 
-  // Run the shimmer only while the chip is in the viewport (§7.5)
+  // Run the shimmer only while the chip is in the viewport
   useEffect(() => {
     const node = chipRef.current;
     if (!node || typeof IntersectionObserver === "undefined") return;
@@ -80,8 +80,8 @@ export function EndScreen({ t, openModal, scrollTop }) {
           {t.endDisplay}
         </h2>
         <div className="flex flex-col gap-0.5">
-          {t.endText.map((line, i) => (
-            <p key={i} className="m-0 font-script text-[clamp(24px,6.4vw,32px)] font-medium leading-[1.35] text-text-primary">
+          {t.endText.map((line, index) => (
+            <p key={index} className="m-0 font-script text-[clamp(24px,6.4vw,32px)] font-medium leading-[1.35] text-text-primary">
               {line}
             </p>
           ))}
@@ -117,11 +117,11 @@ export function EndScreen({ t, openModal, scrollTop }) {
           </button>
         </div>
         <div className="h-px bg-text-secondary opacity-50" />
-        {/* Figma href is still a "#" placeholder per spec §13.1 — URL pending */}
         <div className="mt-5 flex justify-center gap-3">
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
-            href="#"
+            href="https://www.figma.com/design/8w9zFTa2Sfd2ULZg7ZMf2m/Letta-s-Birthday-%E2%80%94-Design-System-Board?node-id=0-1"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => trackEvent("link_click", { destination: "figma" })}
             className="inline-block rounded-full border-2 border-border-primary bg-bg-surface px-[18px] py-[7px] font-sans text-sm font-semibold text-text-primary no-underline shadow-[2px_2px_0_0_var(--border-primary)] transition-transform duration-100 hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_var(--border-primary)]"
           >

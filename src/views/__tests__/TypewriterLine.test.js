@@ -23,7 +23,7 @@ afterEach(() => {
 });
 
 describe("TypewriterLine", () => {
-  it("always exposes the full text to screen readers (spec §11)", () => {
+  it("always exposes the full text to screen readers", () => {
     const { container } = render(<TypewriterLine text={TEXT} />);
     expect(srText(container)).toBe(TEXT);
     expect(typedText(container)).toBe("");
@@ -51,13 +51,13 @@ describe("TypewriterLine", () => {
     expect(typedText(container)).toBe(TEXT);
   });
 
-  it("shows the full text instantly under prefers-reduced-motion (spec §7.7)", () => {
+  it("shows the full text instantly under prefers-reduced-motion", () => {
     mockMatchMedia({ reduce: true });
     const { container } = render(<TypewriterLine text={TEXT} />);
     expect(typedText(container)).toBe(TEXT);
   });
 
-  it("swaps a finished line instantly on language change (spec §10)", async () => {
+  it("swaps a finished line instantly on language change", async () => {
     const { container, rerender } = render(<TypewriterLine text={TEXT} />);
     await act(async () => {
       jest.advanceTimersByTime(lineTypingDuration(TEXT) + 100);
@@ -69,7 +69,7 @@ describe("TypewriterLine", () => {
     expect(srText(container)).toBe(TEXT2);
   });
 
-  it("restarts typing when the text changes mid-typing (spec §10)", async () => {
+  it("restarts typing when the text changes mid-typing", async () => {
     const { container, rerender } = render(<TypewriterLine text={TEXT} />);
     await act(async () => {
       jest.advanceTimersByTime(Math.floor(lineTypingDuration(TEXT) / 2));

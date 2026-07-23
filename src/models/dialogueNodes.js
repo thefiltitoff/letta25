@@ -161,10 +161,10 @@ export const dialogueNodes = [
     id: 10,
     indicator: true,
     lines: {
-      ru: ["Или совершенно несерьёзной шутки."],
-      sr: ["Или сасвим неозбиљне шале."],
-      cs: ["Nebo úplně nevážného vtípku."],
-      en: ["Or a completely silly joke."],
+      ru: ["Или забавной шутки, которая ненадолго возвращает в детство."],
+      sr: ["Или неке забавне шале која те накратко враћа у детињство."],
+      cs: ["Nebo zábavného vtípku, který tě na chvilku vrátí do dětství."],
+      en: ["Or a silly joke that takes you back to childhood for a moment."],
     },
   },
   {
@@ -302,7 +302,7 @@ export function buttonLabelOf(node, lang) {
   return node.button[lang] || node.button.ru;
 }
 
-// "Typing" delay: 30ms per character of the upcoming text, clamped to 900–1500ms (spec §7.1.2)
+// "Typing" delay: 30ms per character of the upcoming text, clamped to 900–1500ms
 export function indicatorDuration(node, lang) {
   const text = linesOf(node, lang).join(" ");
   return Math.max(900, Math.min(1500, text.length * 30));
