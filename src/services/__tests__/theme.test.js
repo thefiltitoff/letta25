@@ -58,20 +58,21 @@ describe("systemPrefersDark", () => {
   });
 });
 
-// Stored choice wins, otherwise prefers-color-scheme decides.
+// Stored choice wins, otherwise the default is always light — the system
+// preference is intentionally ignored so the first visit is always light.
 describe("resolveInitialTheme", () => {
   it("prefers the stored theme over the system preference", () => {
-    localStorage.setItem("theme", "light");
+    localStorage.setItem("theme", "dark");
+    mockMatchMedia({ dark: false });
+    expect(resolveInitialTheme()).toBe("dark");
+  });
+
+  it("ignores the system preference and defaults to light", () => {
     mockMatchMedia({ dark: true });
     expect(resolveInitialTheme()).toBe("light");
   });
 
-  it("falls back to the system preference", () => {
-    mockMatchMedia({ dark: true });
-    expect(resolveInitialTheme()).toBe("dark");
-  });
-
-  it("defaults to light", () => {
+  it("defaults to light when nothing is stored", () => {
     mockMatchMedia({ dark: false });
     expect(resolveInitialTheme()).toBe("light");
   });

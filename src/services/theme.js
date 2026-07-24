@@ -25,7 +25,7 @@ export function systemPrefersDark() {
 }
 
 export function resolveInitialTheme() {
-  return readStoredTheme() || (systemPrefersDark() ? "dark" : "light");
+  return readStoredTheme() || "light";
 }
 
 export function applyThemeToDocument(theme) {

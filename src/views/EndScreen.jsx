@@ -111,7 +111,7 @@ export function EndScreen({ t, openModal, scrollTop }) {
             type="button"
             onClick={scrollTop}
             aria-label={t.aria.top}
-            className="h-11 w-11 cursor-pointer rounded-full border-none bg-transparent text-lg font-bold text-text-primary shadow-[inset_0_0_0_2.5px_var(--border-primary)] md:h-12 md:w-12"
+            className="flex h-11 w-11 items-center justify-center cursor-pointer rounded-full border-none bg-transparent text-lg font-bold text-text-primary shadow-[inset_0_0_0_2.5px_var(--border-primary)] md:h-12 md:w-12"
           >
             ↑
           </button>

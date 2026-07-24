@@ -10,10 +10,10 @@ describe("useTheme", () => {
     expect(result.current.isDark).toBe(true);
   });
 
-  it("initializes from the system preference when nothing is stored", () => {
+  it("initializes to light when nothing is stored, ignoring the system preference", () => {
     mockMatchMedia({ dark: true });
     const { result } = renderHook(() => useTheme());
-    expect(result.current.theme).toBe("dark");
+    expect(result.current.theme).toBe("light");
   });
 
   it("applies the theme to the document (viewmodel → service)", () => {
