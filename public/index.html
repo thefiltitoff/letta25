@@ -11,17 +11,16 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/geist-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/geist-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="%PUBLIC_URL%/fonts/caveat-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
     <script>
       (function () {
         try {
-          var t = localStorage.getItem("theme");
-          if (t !== "light" && t !== "dark") {
-            t = matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
-          }
-          document.documentElement.dataset.theme = t;
-        } catch (e) {
+          var storedTheme = localStorage.getItem("theme");
+          document.documentElement.dataset.theme =
+            storedTheme === "light" || storedTheme === "dark" ? storedTheme : "light";
+        } catch (error) {
           document.documentElement.dataset.theme = "light";
         }
       })();
